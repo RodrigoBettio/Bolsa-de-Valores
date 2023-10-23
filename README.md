@@ -1,4 +1,4 @@
-#Bolsa de Valores
+# Bolsa de Valores
 # O que é a Bolsa de Valores?
 Uma bolsa de valores é uma plataforma que facilita a negociação de ativos financeiros, como ações, títulos, commodities e outros instrumentos financeiros. Ela desempenha um papel vital no funcionamento dos mercados financeiros, permitindo que investidores comprem e vendam valores mobiliários com facilidade e eficiência. Existem diversas bolsas de valores espalhadas pelo mundo, como a de Nova York (NYSE), a de Londres (LSE) e a de Tóquio (TSE), mas utilizaremos como base a Bolsa de Valores do Brasil (B3) utilizando como indíce
 # Sobre o Projeto
