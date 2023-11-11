@@ -3,11 +3,11 @@ import java.util.Queue;
 
 public class Corretora {
     private String nome;
-    private float corretagem; 
+    private double corretagem; 
 
     private Queue<Ordem> filaOrdens = new LinkedList<>();
 
-    public Corretora(String nome, float corretagem) {
+    public Corretora(String nome, double corretagem) {
         this.nome = nome;
         this.corretagem = corretagem;
     }
@@ -32,7 +32,7 @@ public class Corretora {
         return filaOrdens.poll();
     }
 
-    public float getCorretagem() {
+    public double getCorretagem() {
         return corretagem;
     }
 

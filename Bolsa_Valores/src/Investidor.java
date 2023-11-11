@@ -5,13 +5,24 @@ class Investidor {
     private String cpf;
     private List<Carteira> carteiras = new LinkedList<>();
     private double dinheiro;
+    private String nomeCarteira;
 
-    public Investidor(String nome, String cpf) {
+    public Investidor(String nome, String cpf, String nomeCarteira) {
         this.nome = nome;
         this.cpf = cpf;
         this.dinheiro = 1000.0;
-        Carteira carteira = new Carteira ("Carteira");
+        this.nomeCarteira = nomeCarteira;
+    
+        Carteira carteira = new Carteira("Carteira de " + nome);
         carteiras.add(carteira);
+    }
+
+    public String getNomeCarteira() {
+        return nomeCarteira;
+    }
+
+    public void setNomeCarteira(String nomeCarteira) {
+        this.nomeCarteira = nomeCarteira;
     }
 
     public String getNome() {
@@ -48,9 +59,10 @@ class Investidor {
         }
 
         double custoTotal = quantidade * acao.getValor() * (1 + corretora.getCorretagem());
-
+        
         if (dinheiro < custoTotal) {
-            throw new IllegalArgumentException("Você não tem dinheiro suficiente para comprar o ativo.");
+            throw new IllegalArgumentException("Você não tem dinheiro suficiente para comprar " + quantidade + " ações de " + acao.getNome() + ".");
+
         }
 
         if (carteiras.isEmpty()) {
