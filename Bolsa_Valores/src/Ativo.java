@@ -1,3 +1,7 @@
+//Código feito por Lucas Milhomem, Pedro Mafra, Rafael Munõz e Rodrigo Bettio
+
+import java.util.Stack;
+
 abstract class Ativo {
     private String codigo;
     private String nome;
@@ -31,17 +35,5 @@ abstract class Ativo {
 
     public void adicionarOrdem(Ordem ordem) {
         historicoOrdens.push(ordem);
-    }
-}
-
-class Acao extends Ativo {
-    public Acao(String codigo, String nome) {
-        super(codigo, nome);
-    }
-}
-
-class FII extends Ativo {
-    public FII(String codigo, String nome) {
-        super(codigo, nome);
     }
 }

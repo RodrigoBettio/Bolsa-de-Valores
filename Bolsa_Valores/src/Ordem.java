@@ -1,5 +1,6 @@
+//Código feito por Lucas Milhomem, Pedro Mafra, Rafael Munõz e Rodrigo Bettio
 
-public class Ordem {
+class Ordem {
     private String tipo;
     private int quantidade;
     private double preco;
