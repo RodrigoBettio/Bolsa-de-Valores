@@ -10,23 +10,23 @@ public class Main {
                 System.out.print("Digite o seu CPF: ");
                 String cpf = scanner.nextLine();
 
-                Investidor investidor = new Investidor(nome, cpf, nomeCarteira);
+                Investidor investidor = new Investidor(nome, cpf);
                 SistemaCadastro.adicionarInvestidor(investidor);
                 System.out.println("Cadastro concluído com sucesso!");
 
-        Investidor investidor1 = new Investidor("Rodrigo Bettio", "32569802102","Carteira1");
+        Investidor investidor1 = new Investidor("Rodrigo Bettio", "32569802102");
         SistemaCadastro.adicionarInvestidor(investidor1);
-        Investidor investidor2 = new Investidor("Pedro Mafra", "84695478211","Carteira2");
+        Investidor investidor2 = new Investidor("Pedro Mafra", "84695478211");
         SistemaCadastro.adicionarInvestidor(investidor2);
-        Investidor investidor3 = new Investidor("Rony Rústico", "32456984599","Carteira3");
+        Investidor investidor3 = new Investidor("Rony Rústico", "32456984599");
         SistemaCadastro.adicionarInvestidor(investidor3);
-        Investidor investidor4 = new Investidor("Lucas Almeida", "40321450122","Carteira4");
+        Investidor investidor4 = new Investidor("Lucas Almeida", "40321450122");
         SistemaCadastro.adicionarInvestidor(investidor4);
-        Investidor investidor5 = new Investidor("Milhomenos", "98563201401","Carteira5");
+        Investidor investidor5 = new Investidor("Milhomenos", "98563201401");
         SistemaCadastro.adicionarInvestidor(investidor5);
-        Investidor investidor6 = new Investidor("Rafael Munõz", "21034521466","Carteira6");
+        Investidor investidor6 = new Investidor("Rafael Munõz", "21034521466");
         SistemaCadastro.adicionarInvestidor(investidor6);
-        Investidor investidor7 = new Investidor("KillerFrost", "0324687522", "Carteira7");
+        Investidor investidor7 = new Investidor("KillerFrost", "0324687522");
         SistemaCadastro.adicionarInvestidor(investidor7);
 
         SistemaCadastro.exibirInvestidores();
@@ -130,10 +130,10 @@ public class Main {
 
         //Parte Prática
         
-        investidor1.comprar(corretora1, acao1, 10);
+        investidor2.comprar(corretora1, acao1, 10);
         System.out.println("Dinheiro após compra: " + String.format("%.2f", investidor2.getDinheiro()));
 
-        investidor1.vender(corretora1, acao1, 10);
-        System.out.println("Dinheiro após venda: " + String.format("%.2f", investidor1.getDinheiro()));
+        investidor2.vender(corretora1, acao1, 5);
+        System.out.println("Dinheiro após venda: " + String.format("%.2f", investidor2.getDinheiro()));
     }
 }

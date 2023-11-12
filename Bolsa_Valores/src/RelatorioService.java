@@ -1,5 +1,3 @@
-//Código feito por Lucas Milhomem, Pedro Mafra, Rafael Munõz e Rodrigo Bettio
-
 import java.util.Comparator;
 import java.util.List;
 import java.util.LinkedList;
@@ -8,7 +6,8 @@ import java.util.stream.Collectors;
 public class RelatorioService {
     public static List<Ativo> composicaoCarteiraInvestidor(Investidor investidor) {
         List<Ativo> composicao = new LinkedList<>();
-        for (Carteira carteira : investidor.getCarteiras()) {
+        for (String carteiraNome : investidor.getCarteiras().keySet()) {
+            Carteira carteira = investidor.getCarteiras().get(carteiraNome);
             composicao.addAll(carteira.getAtivos());
         }
         return composicao;

@@ -1,47 +1,28 @@
-import java.util.LinkedList;
-import java.util.List;
-class Investidor {
+import java.util.HashMap;
+import java.util.Map;
+
+public class Investidor {
     private String nome;
     private String cpf;
-    private List<Carteira> carteiras = new LinkedList<>();
+    private Map<String, Carteira> carteiras = new HashMap<>();
     private double dinheiro;
-    private String nomeCarteira;
 
-    public Investidor(String nome, String cpf, String nomeCarteira) {
+    public Investidor(String nome, String cpf) {
         this.nome = nome;
         this.cpf = cpf;
         this.dinheiro = 1000.0;
-        this.nomeCarteira = nomeCarteira;
-    
-        Carteira carteira = new Carteira("Carteira de " + nome);
-        carteiras.add(carteira);
-    }
-
-    public String getNomeCarteira() {
-        return nomeCarteira;
-    }
-
-    public void setNomeCarteira(String nomeCarteira) {
-        this.nomeCarteira = nomeCarteira;
+        criarCarteira("Carteira");
     }
 
     public String getNome() {
         return nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
     public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public List<Carteira> getCarteiras() {
+    public Map<String, Carteira> getCarteiras() {
         return carteiras;
     }
 
@@ -49,8 +30,9 @@ class Investidor {
         return dinheiro;
     }
 
-    public void adicionarCarteira(Carteira carteira) {
-        carteiras.add(carteira);
+    public void criarCarteira(String nomeCarteira) {
+        Carteira carteira = new Carteira(nomeCarteira);
+        carteiras.put(nomeCarteira, carteira);
     }
 
     public void comprar(Corretora corretora, Acao acao, int quantidade) {
@@ -59,21 +41,22 @@ class Investidor {
         }
 
         double custoTotal = quantidade * acao.getValor() * (1 + corretora.getCorretagem());
-        
+
         if (dinheiro < custoTotal) {
             throw new IllegalArgumentException("Você não tem dinheiro suficiente para comprar " + quantidade + " ações de " + acao.getNome() + ".");
-
         }
 
-        if (carteiras.isEmpty()) {
-            throw new IllegalArgumentException("Você não possui carteiras para comprar o ativo.");
-        }
-        dinheiro -= custoTotal;
-        for (int i = 0; i < quantidade; i++) {
-            carteiras.get(0).adicionarAtivo(acao);
-        }
+        // Itera sobre as carteiras no mapa e faz a compra na primeira carteira encontrada
+        for (Map.Entry<String, Carteira> entry : carteiras.entrySet()) {
+            Carteira carteira = entry.getValue();
 
-
+            dinheiro -= custoTotal;
+            for (int i = 0; i < quantidade; i++) {
+                carteira.adicionarAtivo(acao);
+            }
+            // Termina a compra após adicionar ativos a uma carteira
+            break;
+        }
     }
 
     public void vender(Corretora corretora, Acao acao, int quantidade) {
@@ -82,7 +65,9 @@ class Investidor {
         }
 
         Carteira carteira = null;
-        for (Carteira c : carteiras) {
+        // Encontrar a carteira com a quantidade desejada do ativo
+        for (Map.Entry<String, Carteira> entry : carteiras.entrySet()) {
+            Carteira c = entry.getValue();
             if (c.quantidadeAtivos(acao) >= quantidade) {
                 carteira = c;
                 break;
