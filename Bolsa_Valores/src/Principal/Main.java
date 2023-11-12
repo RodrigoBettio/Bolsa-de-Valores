@@ -32,9 +32,21 @@ public class Main {
         Investidor investidor7 = new Investidor("KillerFrost", "0324687522");
         SistemaCadastro.adicionarInvestidor(investidor7);
 
-        SistemaCadastro.exibirInvestidores();
+        //SistemaCadastro.exibirInvestidores();
+          
 
-        FII FII1 = new FII("XPML11","XP Malls");
+        FII fii1 = new FII("KNCR11", "Kinea Rendimentos Imobiliários",101.15, 10.1 );
+        FII fii2 = new FII("KNIP11", "Kinea Índice de Preços",90.85,9.1 );
+        FII fii3 = new FII("HGLG11", "CSHG Logística", 155.64, 15.2) ;
+        FII fii4 = new FII("BRCR11", "BTG Pactual Corporate Office", 54.34, 5.20);
+        FII fii5 = new FII("KNRI11", "Kinea Renda Imobiliária", 158.62,15.2);
+        FII fii6 = new FII("IRDM11", "Iridium Recebíveis Imobiliários", 74.76,6.8);
+        FII fii7 = new FII("XPLG11", "XP Logística", 102.0, 8.2);
+        FII fii8 = new FII("MXRF11", "Maxi Renda", 12.4, 0.8);
+        FII fii9 = new FII("XPML11", "XP Malls", 108.5, 10.2);
+        FII fii10 = new FII("HCTR11", "Hectare CE", 84.10, 6.86);
+
+        FII.exibirTodosOsFIIs();
 
         Acao acao1 = new Acao("RRRP3", "3R Petroleum", 25.57, 2.3);
         Acao acao2 = new Acao("ALSO3", "Aliansce Sonae", 38.44, 1.7);
@@ -122,14 +134,71 @@ public class Main {
         Acao acao84 = new Acao("WEGE3", "Weg", 45.68, 0.4);
         Acao acao85 = new Acao("YDUQ3", "Yduqs", 35.59, 2.8);
 
+        Acao.exibirAcoes();
+
         Corretora corretora1 = new Corretora("Rico", 0.0f);
         Corretora corretora2 = new Corretora("Clear", 0.1f);
         Corretora corretora3 = new Corretora("Toro", 0.08f);
         Corretora corretora4 = new Corretora("C6 Bank", 0.05f);
         Corretora corretora5= new Corretora("XP Investimentos", 0.04f);
 
-        //Parte Prática
-        
-        
+// Parte Prática
+
+System.out.println("Dados do investidor1:");
+System.out.println("Nome: " + investidor1.getNome());
+System.out.println("CPF: " + investidor1.getCpf());
+System.out.println("Dinheiro: " + investidor1.getDinheiro());
+
+boolean sair = false;
+
+while (!sair) {
+    System.out.println("\nOpções:");
+    System.out.println("1. Comprar");
+    System.out.println("2. Vender");
+    System.out.println("3. Mostrar os Ativos Disponíveis");
+    System.out.println("4. Mostrar minha Carteira");
+    System.out.println("5. Sair");
+    System.out.print("Escolha uma opção (1/2/3/4/5): ");
+    int escolha = scanner.nextInt();
+    scanner.nextLine();  // Para consumir a quebra de linha
+
+    switch (escolha) {
+
+        case 2:
+            // Lógica para a opção "Vender"
+            System.out.println("Opção Vender selecionada.");
+            // Implemente a lógica para vender ações aqui
+            break;
+        case 3:
+            // Lógica para a opção "Mostrar os Ativos"
+            System.out.println("Opção Mostrar os Ativos selecionada.");
+            SistemaCadastro.exibirInvestidores();  // Você pode modificar isso para mostrar os ativos do investidor
+            break;
+        case 4:
+                    // Lógica para a opção "Mostrar dados de um investidor"
+                    System.out.println("Opção Mostrar dados de um investidor selecionada.");
+                    System.out.print("Digite o CPF do investidor que deseja visualizar: ");
+                    String cpfInvestidor = scanner.nextLine();
+                    Investidor investidorEscolhido = SistemaCadastro.encontrarInvestidorPorCPF(cpfInvestidor);
+                    if (investidorEscolhido != null) {
+                        System.out.println("Dados do investidor:");
+                        System.out.println("Nome: " + investidorEscolhido.getNome());
+                        System.out.println("CPF: " + investidorEscolhido.getCpf());
+                        System.out.println("Dinheiro: " + investidorEscolhido.getDinheiro());
+                    } else {
+                        System.out.println("Investidor não encontrado.");
+                    }
+                    break;
+                case 5:
+                    // Opção para sair
+                    System.out.println("Saindo do programa.");
+                    sair = true;
+                    break;
+                default:
+                    System.out.println("Opção inválida. Tente novamente.");
+            }
+        }
+
+        System.out.println("Programa encerrado.");
     }
 }

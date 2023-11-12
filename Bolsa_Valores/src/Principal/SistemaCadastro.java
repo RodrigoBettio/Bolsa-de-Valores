@@ -22,4 +22,13 @@ public class SistemaCadastro {
             System.out.println();
         }
     }
+
+    public static Investidor encontrarInvestidorPorCPF(String cpf) {
+        for (Investidor investidor : filaInvestidores) {
+            if (investidor.getCpf().equals(cpf)) {
+                return investidor;
+            }
+        }
+        return null; // Retorna null se o investidor não for encontrado.
+    }
 }
