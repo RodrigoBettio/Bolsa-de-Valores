@@ -1,8 +1,8 @@
 package Principal;
 //Código feito por Lucas Milhomem, Pedro Mafra, Rafael Munõz e Rodrigo Bettio
-
+import java.time.format.DateTimeFormatter;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 class Ordem {
     private String tipo; //Preferencial ou Ordinaria
@@ -11,7 +11,9 @@ class Ordem {
     private Investidor investidor;
     private Ativo ativo;
     private Corretora corretora;
-    private Date data;
+    private LocalDateTime data;
+
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
 
     public Ordem(String tipo, int quantidade, double preco, Investidor investidor, Ativo ativo, Corretora corretora) {
         this.tipo = tipo;
@@ -20,7 +22,7 @@ class Ordem {
         this.investidor = investidor;
         this.ativo = ativo;
         this.corretora = corretora;
-        this.data = new Date();
+        this.data = LocalDateTime.now();
     }
 
     public String getTipo() {
@@ -71,7 +73,7 @@ class Ordem {
         this.corretora = corretora;
     }
 
-    public Date getData(){
+    public LocalDateTime getData(){
         return data;
     }
 

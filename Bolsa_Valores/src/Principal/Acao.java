@@ -36,4 +36,14 @@ class Acao extends Ativo {
             System.out.println();
         }
     }
+
+    public static Acao encontrarAcao(String codigo) {
+        for (Acao acao : acoesDisponiveis) {
+            if (acao.getCodigo().equalsIgnoreCase(codigo)) {
+                return acao;
+            }
+        }
+        return null; // Retorna null se não encontrar a ação
+    }
+    
 }

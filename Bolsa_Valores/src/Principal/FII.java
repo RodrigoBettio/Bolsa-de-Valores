@@ -37,5 +37,12 @@ class FII extends Ativo {
             System.out.println();
         }
     }
-    
+    public static FII encontrarFII(String codigo) {
+        for (FII fii : fiisDisponiveis) {
+            if (fii.getCodigo().equalsIgnoreCase(codigo)) {
+                return fii;
+            }
+        }
+        return null; // Retorna null se não encontrar o FII
+    }
 }

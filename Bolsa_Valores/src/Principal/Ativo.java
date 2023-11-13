@@ -37,4 +37,6 @@ abstract class Ativo {
     public void adicionarOrdem(Ordem ordem) {
         historicoOrdens.push(ordem);
     }
+
+    
 }

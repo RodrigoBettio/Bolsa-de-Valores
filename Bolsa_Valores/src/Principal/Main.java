@@ -1,4 +1,5 @@
 package Principal;
+import java.util.Map;
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
@@ -46,7 +47,7 @@ public class Main {
         FII fii9 = new FII("XPML11", "XP Malls", 108.5, 10.2);
         FII fii10 = new FII("HCTR11", "Hectare CE", 84.10, 6.86);
 
-        FII.exibirTodosOsFIIs();
+        //FII.exibirTodosOsFIIs();
 
         Acao acao1 = new Acao("RRRP3", "3R Petroleum", 25.57, 2.3);
         Acao acao2 = new Acao("ALSO3", "Aliansce Sonae", 38.44, 1.7);
@@ -132,64 +133,239 @@ public class Main {
         Acao acao82 = new Acao("BHIA3", "Grupo Casas Bahia", 32.47, 0.9);
         Acao acao83 = new Acao("VBBR3", "Vibra Energia", 42.39, 2.1);
         Acao acao84 = new Acao("WEGE3", "Weg", 45.68, 0.4);
-        Acao acao85 = new Acao("YDUQ3", "Yduqs", 35.59, 2.8);
+        Acao acao85 = new Acao("YDUQ3", "Yduqs", 10, 2.8);
 
-        Acao.exibirAcoes();
+        //Acao.exibirAcoes();
 
         Corretora corretora1 = new Corretora("Rico", 0.0f);
-        Corretora corretora2 = new Corretora("Clear", 0.1f);
-        Corretora corretora3 = new Corretora("Toro", 0.08f);
-        Corretora corretora4 = new Corretora("C6 Bank", 0.05f);
-        Corretora corretora5= new Corretora("XP Investimentos", 0.04f);
+        Corretora corretora2 = new Corretora("Clear", 0.01f);
+        Corretora corretora3 = new Corretora("Toro", 0.015f);
+        Corretora corretora4 = new Corretora("C6 Bank", 0.02f);
+        Corretora corretora5= new Corretora("XP Investimentos", 0.018f);
+        //Corretora.exibirCorretoras();
 
 // Parte Prática
 
-System.out.println("Dados do investidor1:");
-System.out.println("Nome: " + investidor1.getNome());
-System.out.println("CPF: " + investidor1.getCpf());
-System.out.println("Dinheiro: " + investidor1.getDinheiro());
+System.out.println("\nDados do investidor:");
+System.out.println("Nome: " + investidor.getNome());
+System.out.println("CPF: " + investidor.getCpf());
+System.out.println("Dinheiro: " + investidor.getDinheiro());
+
+
+
+
+Corretora corretoraEscolhida = null;
+
+while (corretoraEscolhida == null) {
+    System.out.println("Opção para escolher a corretora selecionada.");
+    Corretora.exibirCorretoras();
+    System.out.print("Escolha uma Corretora para intermediar os negócios (Utilize o nome): ");
+    String nomeCorretora = scanner.nextLine();
+    corretoraEscolhida = Corretora.encontrarCorretoraPorNome(nomeCorretora);
+
+    if (corretoraEscolhida == null) {
+        System.out.println("Corretora não encontrada. Escolha novamente.");
+    }
+}
+
+investidor.setCorretora(corretoraEscolhida);
+System.out.println("Corretora escolhida: " + corretoraEscolhida.getNome());
+
+
 
 boolean sair = false;
-
-while (!sair) {
+while (!sair) {    //Menu Usuário
     System.out.println("\nOpções:");
     System.out.println("1. Comprar");
     System.out.println("2. Vender");
-    System.out.println("3. Mostrar os Ativos Disponíveis");
-    System.out.println("4. Mostrar minha Carteira");
-    System.out.println("5. Sair");
-    System.out.print("Escolha uma opção (1/2/3/4/5): ");
+    System.out.println("3. Mostrar minha Carteira");
+    System.out.println("4. Mostrar Dados de um Investidor");
+    System.out.println("5. Trocar de Corretora");
+    System.out.println("6. Sair");
+    System.out.print("Escolha uma opção (1/2/3/4/5/6): ");
     int escolha = scanner.nextInt();
     scanner.nextLine();  // Para consumir a quebra de linha
 
-    switch (escolha) {
+    Investidor investidorEscolhido = null;
+    switch (escolha) { 
+       
+            case 1: //Comprar
+        System.out.println("\nOpção Comprar selecionada.");
+        
+        boolean escolhaValida = false;
+        
+        while (!escolhaValida) {
+            System.out.println("\nEscolha o que deseja comprar:");
+            System.out.println("1. Comprar FIIs");
+            System.out.println("2. Comprar Ações");
+            System.out.println("3. Voltar ao menu principal");
+            int escolhaCompra = scanner.nextInt();
+            scanner.nextLine(); // Consuma a quebra de linha
+    
+            switch (escolhaCompra) {
+                case 1:// Comprar FIIs
+                    
+                    FII.exibirTodosOsFIIs(); // Mostre os FIIs disponíveis
+                    System.out.print("Escolha o FII que deseja comprar (código): ");
+                    String codigoFII = scanner.nextLine();
+                    System.out.print("Digite a quantidade que deseja comprar: ");
+                    int quantidadeCompra = scanner.nextInt();
+                    scanner.nextLine(); // Consuma a quebra de linha
 
-        case 2:
-            // Lógica para a opção "Vender"
-            System.out.println("Opção Vender selecionada.");
-            // Implemente a lógica para vender ações aqui
-            break;
-        case 3:
-            // Lógica para a opção "Mostrar os Ativos"
-            System.out.println("Opção Mostrar os Ativos selecionada.");
-            SistemaCadastro.exibirInvestidores();  // Você pode modificar isso para mostrar os ativos do investidor
-            break;
-        case 4:
-                    // Lógica para a opção "Mostrar dados de um investidor"
-                    System.out.println("Opção Mostrar dados de um investidor selecionada.");
-                    System.out.print("Digite o CPF do investidor que deseja visualizar: ");
-                    String cpfInvestidor = scanner.nextLine();
-                    Investidor investidorEscolhido = SistemaCadastro.encontrarInvestidorPorCPF(cpfInvestidor);
-                    if (investidorEscolhido != null) {
-                        System.out.println("Dados do investidor:");
-                        System.out.println("Nome: " + investidorEscolhido.getNome());
-                        System.out.println("CPF: " + investidorEscolhido.getCpf());
-                        System.out.println("Dinheiro: " + investidorEscolhido.getDinheiro());
+                    FII fiiEscolhido = FII.encontrarFII(codigoFII);
+                    if (fiiEscolhido != null) {
+                        investidor.comprarFII(fiiEscolhido, quantidadeCompra, "Carteira");
+                        System.out.println(quantidadeCompra + " cotas de " + fiiEscolhido.getNome() + " compradas com sucesso!");
                     } else {
-                        System.out.println("Investidor não encontrado.");
+                        System.out.println("FII não encontrado.");
                     }
                     break;
-                case 5:
+
+                case 2:// Comprar Ações
+                    
+                    Acao.exibirAcoes(); // Mostre as Ações disponíveis
+                    System.out.print("Escolha a Ação que deseja comprar (código): ");
+                    String codigoAcao = scanner.nextLine();
+                    System.out.print("Digite a quantidade que deseja comprar: ");
+                    quantidadeCompra = scanner.nextInt();
+                    scanner.nextLine(); // Consuma a quebra de linha
+
+                    Acao acaoEscolhida = Acao.encontrarAcao(codigoAcao);
+                    if (acaoEscolhida != null) {
+                        investidor.comprarAcao(acaoEscolhida, quantidadeCompra, "Carteira");
+                        System.out.println(quantidadeCompra + " ações de " + acaoEscolhida.getNome() + " compradas com sucesso!");
+                    } else {
+                        System.out.println("Ação não encontrada.");
+                    }
+                    break;
+
+                case 3:// Opção para voltar ao menu principal
+                    
+                    System.out.println("Retornando ao menu principal.");
+                    escolhaValida = true;
+                    break;
+
+                default:
+                    System.out.println("Opção inválida. Tente novamente.");
+            }
+        }
+        break;
+    
+            case 2: //Vender
+        System.out.println("Opção Vender selecionada.");
+        
+        boolean escolhaValidaVenda = false;
+        
+        while (!escolhaValidaVenda) {
+            System.out.println("\nEscolha o que deseja vender:");
+            System.out.println("1. Vender FIIs");
+            System.out.println("2. Vender Ações");
+            System.out.println("3. Mostrar seus Ativos");
+            System.out.println("4. Voltar ao menu principal");
+            int escolhaVenda = scanner.nextInt();
+            scanner.nextLine(); // Consuma a quebra de linha
+    
+            switch (escolhaVenda) {
+                case 1: // Vender FIIs
+                FII.exibirTodosOsFIIs();// Mostre os FIIs disponíveis
+                System.out.print("Escolha o FII que deseja vender (código): ");
+                String codigoFII = scanner.nextLine();
+                System.out.print("Digite a quantidade que deseja vender: ");
+                int quantidadeVendaFII = scanner.nextInt();
+                scanner.nextLine(); 
+            
+                FII fiiEscolhido = FII.encontrarFII(codigoFII);
+            
+                if (fiiEscolhido != null) {
+                    boolean vendaBemSucedida = investidor.venderFII(fiiEscolhido, quantidadeVendaFII, "Carteira");
+                    if (vendaBemSucedida) {
+                        System.out.println(quantidadeVendaFII + " cotas de " + fiiEscolhido.getNome() + " vendidas com sucesso!");
+                    } else {
+                        System.out.println("Erro ao vender FIIs.");
+                    }
+                } else {
+                    System.out.println("FII não encontrado.");
+                }
+                break;
+            
+    
+                case 2: // Vender Ações
+
+                    Acao.exibirAcoes(); // Mostre as Ações disponíveis
+                    System.out.print("Escolha a Ação que deseja vender (código): ");
+                    String codigoAcao = scanner.nextLine();
+                    System.out.print("Digite a quantidade que deseja vender: ");
+                    int quantidadeVendaAcao = scanner.nextInt();
+                    scanner.nextLine();
+                
+                    Acao acaoEscolhida = Acao.encontrarAcao(codigoAcao);
+                
+                    if (acaoEscolhida != null) {
+                        boolean vendaBemSucedida = investidor.venderAcao(acaoEscolhida, quantidadeVendaAcao, "Carteira");
+                        if (vendaBemSucedida) {
+                            System.out.println(quantidadeVendaAcao + " ações de " + acaoEscolhida.getNome() + " vendidas com sucesso!");
+                        } else {
+                            System.out.println("Erro ao vender ações.");
+                        }
+                    } else {
+                        System.out.println("Ação não encontrada.");
+                    }
+                    break;
+                 
+                case 3: //Mostrar a Carteira
+                investidor.exibirCarteira();
+                break;
+                case 4: // Opção para voltar ao menu principal
+                    
+                    System.out.println("Retornando ao menu principal.");
+                    escolhaValidaVenda = true;
+                    break;
+    
+                default:
+                    System.out.println("Opção inválida. Tente novamente.");
+            }
+        }
+        break;
+    
+
+            case 3: //Mostrar Carteira
+            investidor.exibirCarteira();
+            break;
+        
+            case 4: //Mostrar Dados
+
+            
+           
+            System.out.println("Opção Mostrar dados de um investidor selecionada.");
+            System.out.print("Digite o CPF do investidor que deseja visualizar: ");
+            String cpfInvestidor = scanner.nextLine();
+            investidorEscolhido = SistemaCadastro.encontrarInvestidorPorCPF(cpfInvestidor); 
+            if (investidorEscolhido != null) {
+                System.out.println("Dados do investidor:");
+                System.out.println("Nome: " + investidorEscolhido.getNome());
+                System.out.println("CPF: " + investidorEscolhido.getCpf());
+                System.out.println("Saldo: " + investidorEscolhido.getDinheiro());
+                System.out.println("Corretora Utilizada"+ corretoraEscolhida);
+            } else {
+                System.out.println("Investidor não encontrado.");
+            }
+            break;
+ 
+            case 5: // Trocar de Corretora
+    System.out.println("Opção para trocar de corretora selecionada.");
+    Corretora.exibirCorretoras();
+    System.out.print("Escolha sua nova Corretora (Utilize o nome)");
+    String nomeCorretora = scanner.nextLine();
+    Corretora novaCorretora = Corretora.encontrarCorretoraPorNome(nomeCorretora);
+    if (novaCorretora != null) {
+        investidor.setCorretora(novaCorretora);
+        System.out.println("Corretora Utilizada: " + novaCorretora.getNome());
+    } else {
+        System.out.println("Corretora não encontrada.");
+    }
+    break;
+
+            case 6: //Sair
                     // Opção para sair
                     System.out.println("Saindo do programa.");
                     sair = true;
@@ -200,5 +376,7 @@ while (!sair) {
         }
 
         System.out.println("Programa encerrado.");
+        scanner.close();
     }
+    
 }

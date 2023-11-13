@@ -1,10 +1,10 @@
 package Principal;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Carteira {
     private String nomeCarteira;
-    private List<Acao> ativos = new LinkedList<>();
+    private Map<Ativo, Integer> ativos = new HashMap<>();
 
     public Carteira(String nomeCarteira) {
         this.nomeCarteira = nomeCarteira;
@@ -14,25 +14,41 @@ public class Carteira {
         return nomeCarteira;
     }
 
-    public List<Acao> getAtivos() {
+    public Map<Ativo, Integer> getAtivos() {
         return ativos;
     }
 
-    public void adicionarAtivo(Acao acao) {
-        ativos.add(acao);
+    public void adicionarAtivo(Ativo ativo) {
+        if (ativos.containsKey(ativo)) {
+            int quantidade = ativos.get(ativo);
+            ativos.put(ativo, quantidade + 1);
+        } else {
+            ativos.put(ativo, 1);
+        }
     }
 
-    public void removerAtivo(Acao acao) {
-        ativos.remove(acao);
-    }
-
-    public int quantidadeAtivos(Acao acao) {
-        int quantidade = 0;
-        for (Acao ativo : ativos) {
-            if (ativo.equals(acao)) {
-                quantidade++;
+    public void removerAtivo(Ativo ativo, int quantidade) {
+        if (ativos.containsKey(ativo)) {
+            int quantidadeAtual = ativos.get(ativo); 
+            if (quantidadeAtual > 1) {
+                ativos.put(ativo, quantidadeAtual - 1);
+            } else {
+                ativos.remove(ativo);
             }
         }
-        return quantidade;
     }
+    
+
+    public int quantidadeAtivos(Ativo ativo) {
+        return ativos.getOrDefault(ativo, 0);
+    }
+
+    public int quantidadeFIIEmCarteira(FII fii) {
+        return quantidadeAtivos(fii);
+    }
+
+    public int quantidadeAcaoEmCarteira(Acao acao) {
+        return quantidadeAtivos(acao);
+    }
+    
 }
