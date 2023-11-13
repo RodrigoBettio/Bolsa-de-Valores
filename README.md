@@ -17,4 +17,4 @@ No nosso projeto, estamos criando uma simulação de um ambiente virtual que rep
 - Rafael Munõz
 
 ## Apresentação do Projeto: 
-- https://drive.google.com/drive/folders/1TyfKZm81K6pYD-GCTv9m1rVdq_PcGX_W?usp=sharing
+- https://drive.google.com/drive/folders/1bZHos5MNhMY6cX55nZFmCKu6aTBTjBsw?usp=drive_link
