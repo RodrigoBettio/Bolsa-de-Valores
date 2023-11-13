@@ -38,5 +38,13 @@ abstract class Ativo {
         historicoOrdens.push(ordem);
     }
 
+    public double calcularVolumeNegociado() {
+        return volumeNegociado;
+    }
+    
+    public Stack<Ordem> obterHistoricoOrdens() {
+        return historicoOrdens;
+    }
+    
     
 }
