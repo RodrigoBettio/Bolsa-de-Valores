@@ -57,7 +57,7 @@ public class Corretora {
         System.out.println("Lista de Corretoras Disponíveis:");
         for (Corretora corretora : corretorasDisponiveis) {
             System.out.println("Nome: " + corretora.getNome());
-            System.out.println("Taxa de Corretagem: " + df.format(corretora.getCorretagem())); // Formate a taxa
+            System.out.println("Taxa de Corretagem: " + df.format(corretora.getCorretagem())); 
             System.out.println();
         }
     }

@@ -139,10 +139,10 @@ public class Main {
         //Acao.exibirAcoes();
 
         Corretora corretora1 = new Corretora("Rico", 0.0f);
-        Corretora corretora2 = new Corretora("Clear", 0.01f);
-        Corretora corretora3 = new Corretora("Toro", 0.015f);
-        Corretora corretora4 = new Corretora("C6 Bank", 0.02f);
-        Corretora corretora5= new Corretora("XP Investimentos", 0.018f);
+        Corretora corretora2 = new Corretora("Clear", 0.0f);
+        Corretora corretora3 = new Corretora("Toro", 0.0f);
+        Corretora corretora4 = new Corretora("C6 Bank", 0.0f);
+        Corretora corretora5= new Corretora("XP Investimentos", 0.0f);
         //Corretora.exibirCorretoras();
 
 // Parte Prática
@@ -346,7 +346,7 @@ while (!sair) {    //Menu Usuário
                 System.out.println("Nome: " + investidorEscolhido.getNome());
                 System.out.println("CPF: " + investidorEscolhido.getCpf());
                 System.out.println("Saldo: " + investidorEscolhido.getDinheiro());
-                System.out.println("Corretora Utilizada"+ corretoraEscolhida);
+                System.out.println("Corretora Utilizada: "+ corretoraEscolhida.getNome());
             } else {
                 System.out.println("Investidor não encontrado.");
             }

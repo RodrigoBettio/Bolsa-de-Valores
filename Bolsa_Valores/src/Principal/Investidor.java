@@ -15,7 +15,7 @@ public class Investidor {
     public Investidor(String nome, String cpf) {
         this.nome = nome;
         this.cpf = cpf;
-        this.dinheiro = 1000.0;
+        this.dinheiro = 10000.0;
         criarCarteira("Carteira");
     }
 
